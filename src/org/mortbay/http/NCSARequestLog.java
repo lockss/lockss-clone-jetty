@@ -351,7 +351,7 @@ public class NCSARequestLog implements RequestLog
      */
     public void log(HttpRequest request,
                     HttpResponse response,
-                    int responseLength)
+                    long responseLength)
     {
         try{
             // ignore ignorables
@@ -395,7 +395,7 @@ public class NCSARequestLog implements RequestLog
             {
                 buf.append(' ');
                 if (responseLength>99999)
-                    buf.append(Integer.toString(responseLength));
+                    buf.append(Long.toString(responseLength));
                 else
                 {
                     if (responseLength>9999) 

@@ -73,8 +73,8 @@ public class HttpOutputStream extends OutputStream
     private HttpWriter _asciiwriter;
     private boolean _nulled;
     private boolean _closing=false;
-    private int _contentLength=-1;
-	private int _bytes;
+    private long _contentLength=-1;
+	private long _bytes;
 	private boolean _disableFlush;
     
     /* ------------------------------------------------------------ */
@@ -111,7 +111,7 @@ public class HttpOutputStream extends OutputStream
     }
 
     /* ------------------------------------------------------------ */
-    public void setContentLength(int length)
+    public void setContentLength(long length)
     {
         if (length>=0 && length<_bytes)
             throw new IllegalStateException();
@@ -197,7 +197,7 @@ public class HttpOutputStream extends OutputStream
     }
 
     /* ------------------------------------------------------------ */
-    public int getBytesWritten()
+    public long getBytesWritten()
     {
         return _bytes;
     }
@@ -461,7 +461,7 @@ public class HttpOutputStream extends OutputStream
         {
             if (_bytes+length>=_contentLength)
             {
-                length=_contentLength-_bytes;
+	        length=(int)(_contentLength-_bytes);
                 if (length==0)
                     _nulled=true;
             }

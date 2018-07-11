@@ -988,6 +988,22 @@ public class HttpFields
     }
     
     /* -------------------------------------------------------------- */
+    /** Get a header as a long value.
+     * Returns the value of an integer field or -1 if not found.
+     * The case of the field name is ignored.
+     * @param name the case-insensitive field name
+     * @exception NumberFormatException If bad integer found
+     */
+    public long getLongField(String name)
+        throws NumberFormatException
+    {
+        String val = valueParameters(get(name),null);
+        if (val!=null)
+            return Long.parseLong(val);
+        return -1;
+    }
+    
+    /* -------------------------------------------------------------- */
     /** Get a header as a date value.
      * Returns the value of a date field, or -1 if not found.
      * The case of the field name is ignored.

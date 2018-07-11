@@ -31,6 +31,6 @@ public interface RequestLog
 {
     public void log(HttpRequest request,
                     HttpResponse response,
-                    int responseLength);
+                    long responseLength);
 }
 

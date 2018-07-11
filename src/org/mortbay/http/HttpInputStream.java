@@ -264,7 +264,7 @@ public class HttpInputStream extends FilterInputStream
     /** Get the content length.
      * @return Number of bytes until EOF is returned or -1 for no limit.
      */
-    public int getContentLength()
+    public long getContentLength()
     {
         return _realIn.getByteLimit();
     }

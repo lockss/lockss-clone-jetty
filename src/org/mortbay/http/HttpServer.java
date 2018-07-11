@@ -892,7 +892,7 @@ public class HttpServer extends Container
      */
     void log(HttpRequest request,
              HttpResponse response,
-             int length)
+             long length)
     {
         if (_requestLog!=null &&
             request!=null &&

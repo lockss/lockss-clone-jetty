@@ -334,12 +334,37 @@ public abstract class HttpMessage
     }
     
     /* -------------------------------------------------------------- */
+    /** Get a field as a long value.
+     * Look in header and trailer fields.
+     * Returns the value of an integer field, or -1 if not found.
+     * The case of the field name is ignored.
+     * @param name the case-insensitive field name
+     */
+    public long getLongField(String name)
+    {
+        return _header.getLongField(name);
+    }
+    
+    /* -------------------------------------------------------------- */
     /** Sets the value of an integer field.
      * Header or Trailer fields are set depending on message state.
      * @param name the field name
      * @param value the field integer value
      */
     public void setIntField(String name, int value)
+    {
+        if (_state!=__MSG_EDITABLE)
+            return;
+        _header.put(name, TypeUtil.toString(value));
+    }
+    
+    /* -------------------------------------------------------------- */
+    /** Sets the value of an integer field.
+     * Header or Trailer fields are set depending on message state.
+     * @param name the field name
+     * @param value the field integer value
+     */
+    public void setLongField(String name, long value)
     {
         if (_state!=__MSG_EDITABLE)
             return;

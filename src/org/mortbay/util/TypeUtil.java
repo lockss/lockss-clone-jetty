@@ -259,19 +259,20 @@ public class TypeUtil
 
     
     /* ------------------------------------------------------------ */
-    /** Convert int to String using cache. 
+    /** Convert long to String using cache. 
      */
-    public static String toString(int i)
+    public static String toString(long i)
     {
         if (i>=0 && i<intCacheSize)
         {
-            if (integerStrCache[i]==null)
-                integerStrCache[i]=Integer.toString(i);
-            return integerStrCache[i];
+	  int smalli = (int)i;
+            if (integerStrCache[smalli]==null)
+                integerStrCache[smalli]=Integer.toString(smalli);
+            return integerStrCache[smalli];
         }
         else if (i==-1)
             return "-1";
-        return Integer.toString(i);
+        return Long.toString(i);
     }
 
 

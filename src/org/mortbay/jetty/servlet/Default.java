@@ -733,8 +733,11 @@ public class Default extends HttpServlet
         {
             if (count==resource.length())
                 response.setHeader(HttpFields.__ContentLength,metaData.getLength());
-            else
-                response.setContentLength((int)count);
+            else {
+//                 response.setContentLength(count);
+	      response.setHeader(HttpFields.__ContentLength,
+				 String.valueOf(count));
+	    }
         }
 
         response.setHeader(HttpFields.__LastModified,metaData.getLastModified());

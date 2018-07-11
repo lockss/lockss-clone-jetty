@@ -590,7 +590,7 @@ public class HttpConnection
         if (HttpRequest.__HEAD.equals(_request.getMethod()))
             _outputStream.nullOutput();    
             
-        int length=_response.getIntField(HttpFields.__ContentLength);
+        long length=_response.getLongField(HttpFields.__ContentLength);
         if (length>=0)
             _outputStream.setContentLength(length);
     }
@@ -617,7 +617,7 @@ public class HttpConnection
             return;
 
         int status=_response.getStatus();
-        int length=-1;
+        long length=-1;
         
         // Check if there is missing content expectations
         if (_inputStream.getExpectContinues()!=null)
@@ -657,7 +657,9 @@ public class HttpConnection
                             if (_completing)
                             {
                                 length=_outputStream.getBytesWritten();
-                                _response.setContentLength(length);
+//                                 _response.setContentLength(length);
+                                _response.setField(HttpFields.__ContentLength,
+						   String.valueOf(length));
                             }
                             else
                             {   
@@ -707,7 +709,9 @@ public class HttpConnection
                             if (_completing)
                             {
                                 length=_outputStream.getBytesWritten();
-                                _response.setContentLength(length);
+//                                 _response.setContentLength(length);
+                                _response.setField(HttpFields.__ContentLength,
+						   String.valueOf(length));
                                 _response.setField(HttpFields.__Connection,HttpFields.__KeepAlive);
                             }
                             else
@@ -1002,8 +1006,8 @@ public class HttpConnection
         catch (Error e)         {exception(e);}
         finally
         {
-            int bytes_written=0;
-            int content_length = _response==null
+            long bytes_written=0;
+            long content_length = _response==null
                 ?-1:_response.getIntField(HttpFields.__ContentLength);
                 
             // Complete the request

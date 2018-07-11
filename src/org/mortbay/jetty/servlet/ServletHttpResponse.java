@@ -481,6 +481,13 @@ public class ServletHttpResponse implements HttpServletResponse
     }
     
     /* ------------------------------------------------------------ */
+    public void setLongHeader(String name, long value) 
+    {
+        try{_httpResponse.setLongField(name,value);}
+        catch(IllegalStateException e){LogSupport.ignore(log,e);}
+    }
+    
+    /* ------------------------------------------------------------ */
     public void addDateHeader(String name, long value) 
     {
         try{_httpResponse.addDateField(name,value);}

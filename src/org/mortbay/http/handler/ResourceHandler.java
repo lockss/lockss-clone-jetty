@@ -581,8 +581,11 @@ public class ResourceHandler extends AbstractHttpHandler
         {
             if (count==resource.length())
                 response.setField(HttpFields.__ContentLength,metaData.getLength());
-            else
-                response.setContentLength((int)count);
+            else {
+//                 response.setContentLength(count);
+	      response.setField(HttpFields.__ContentLength,
+				String.valueOf(count));
+	    }
         }
 
         response.setField(HttpFields.__LastModified,metaData.getLastModified());

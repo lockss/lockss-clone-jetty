@@ -2014,7 +2014,7 @@ public class HttpContext extends Container
      */
     public void log(HttpRequest request,
                     HttpResponse response,
-                    int length)
+                    long length)
     {
         if (_statsOn)
         {
