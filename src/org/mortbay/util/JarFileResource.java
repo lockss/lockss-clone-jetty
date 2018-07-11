@@ -86,7 +86,7 @@ class JarFileResource extends JarResource
         _jarFile=null;
         _list=null;
         
-        int sep = _urlString.indexOf("!/");
+        int sep = _urlString.lastIndexOf("!/");
         _jarUrl=_urlString.substring(0,sep+2);
         _path=_urlString.substring(sep+2);
         if (_path.length()==0)
@@ -228,7 +228,7 @@ class JarFileResource extends JarResource
             }
             
             Enumeration e=jarFile.entries();
-            String dir=_urlString.substring(_urlString.indexOf("!/")+2);
+            String dir=_urlString.substring(_urlString.lastIndexOf("!/")+2);
             while(e.hasMoreElements())
             {
                 JarEntry entry = (JarEntry) e.nextElement();
